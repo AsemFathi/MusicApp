@@ -1,6 +1,7 @@
 package com.asem.musicapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,18 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsHolder> implements R
     public void onBindViewHolder(@NonNull SongsHolder holder, int position) {
         AudioModel songData =songList.get(position);
         holder.titleTextView.setText(songData.getTitle());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyMediaPlayer.getInstance().reset();
+                MyMediaPlayer.currentIndex = position;
+                Intent intent = new Intent(context , MusicPlayerActivity.class);
+                intent.putExtra("LIST" , songList);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
     }
 

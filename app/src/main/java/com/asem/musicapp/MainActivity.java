@@ -41,57 +41,15 @@ public class MainActivity extends AppCompatActivity {
 
         requestPermissions();
 
-      /*  if (checkPermission() == false)
-        {
-            requestPermission();
-            return;
-        }
-*/
 
     }
-
-    /*boolean checkPermission()
-    {
-        int result = ContextCompat.checkSelfPermission(MainActivity.this ,READ_EXTERNAL_STORAGE);
-
-        if (result == PackageManager.PERMISSION_GRANTED)
-            return true;
-        else
-            return false;
-    }
-
-    void requestPermission()
-    {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this , READ_EXTERNAL_STORAGE))
-            Toast.makeText(MainActivity.this, "Read permission is required, please allow from settings", Toast.LENGTH_SHORT).show();
-        else
-            ActivityCompat.requestPermissions(MainActivity.this , new String[]{READ_EXTERNAL_STORAGE},123 );
-
-    }*/
-  /*  @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                loadSongs();
-
-            } else {
-                // Permission denied, show a message to the user
-                Toast.makeText(this, "Permission denied to write to external storage", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
     private boolean checkPermissions (){
         int result = ActivityCompat.checkSelfPermission(MainActivity.this, READ_EXTERNAL_STORAGE);
 
         return result == PackageManager.PERMISSION_GRANTED;
     }
 
-    private void requestPermissions()
-    {
+    private void requestPermissions() {
         if (checkPermissions())
         {
             //Toast.makeText(this, "Permission granted.!!!!!! ", Toast.LENGTH_SHORT).show();
@@ -101,8 +59,7 @@ public class MainActivity extends AppCompatActivity {
             requestPermission();
     }
 
-    private void requestPermission()
-    {
+    private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
     }
 
@@ -158,9 +115,9 @@ public class MainActivity extends AppCompatActivity {
                     if (storageAccept) {
                         Toast.makeText(this, "Permission Granted..", Toast.LENGTH_SHORT).show();
                         loadSongs();
-                    } else
+                    } else {
                         Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
-
+                    }
                 }
                 break;
         }
