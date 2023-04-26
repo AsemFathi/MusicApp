@@ -7,7 +7,9 @@ import androidx.core.app.NotificationManagerCompat;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,6 +32,10 @@ public class MusicPlayerActivity extends AppCompatActivity {
     AudioModel currentSong;
 
     MediaPlayer mediaPlayer = MyMediaPlayer.getInstance();
+
+    private static final String ACTION_SET_DEFAULT_MUSIC_PLAYER =
+            "android.settings.APPLICATION_DETAILS_SETTINGS";
+
 
     int x= 0;
 
@@ -69,7 +75,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
                     else
                     {
                         pausePlay.setImageResource(R.drawable.baseline_play_circle_outline_24);
-                        musicIcon.setRotation(0);
+
                     }
 
                 }
@@ -108,6 +114,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
 
 
+
     }
 
     void setResourcesWithMusic()
@@ -131,6 +138,15 @@ public class MusicPlayerActivity extends AppCompatActivity {
     {
         mediaPlayer.reset();
         try {
+
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.reset();
+                    MyMediaPlayer.currentIndex +=1;
+                    setResourcesWithMusic();
+                }
+            });
             mediaPlayer.setDataSource(currentSong.getPath());
             mediaPlayer.prepare();
             mediaPlayer.start();

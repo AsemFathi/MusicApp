@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -91,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
             songsList.add(songData);
     }
     cursor.close();
+
+    Collections.reverse(songsList);
+
 
     if (songsList.size() == 0)
     {
