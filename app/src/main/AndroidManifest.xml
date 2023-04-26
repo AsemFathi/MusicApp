@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.CREATE_NOTIFICATION_CHANNEL" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -14,9 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicApp"
         tools:targetApi="31">
+        <service
+            android:name=".PlayerServices"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
             android:name=".MusicPlayerActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
