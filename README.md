@@ -1,10 +1,2 @@
-# MusicApp
-
-In this application, the user would be able to
-search for a song present in their phone storage.
-They would be able to play, pause, and stop a
-song. Your application will fetch all the songs from
-phone storage and will display it in the form of a
-list.
-
-Tools/ language required – Android Studio, Java, XML.
+• In this application, the user  able to search for a song present in their phone storage. They able to play, pause, and stop a song. this application fetch all the songs from phone storage and display it in the form of a list.
+• Tools/ language required – Android Studio, Java, XML.
